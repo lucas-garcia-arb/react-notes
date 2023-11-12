@@ -1,21 +1,18 @@
 import { useState } from "react";
-import UserList from "./UserList";
+import { UserList } from "./UserList";
 
-const UsersApp = () => {
-
-  const [endpoint, setEndpoint] = useState('users')
+export const UsersApp = () => {
+  const [endpoint, setEndpoint] = useState("users");
 
   const changeEndpoint = () => {
-    setEndpoint('comments');
+    setEndpoint("comments");
   };
-  
+
   return (
     <>
       <h1>Lista de usuarios</h1>
       <button onClick={changeEndpoint}>Carga usuarios</button>
-      <UserList endpoint={endpoint}/>
+      <UserList endpoint={endpoint} />
     </>
   );
 };
-
-export default UsersApp;
