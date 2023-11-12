@@ -1,36 +1,21 @@
-import { useState } from 'react'
+import { useState } from "react";
+import UserList from "./UserList";
 
 const UsersApp = () => {
-    
-    const [users, setUsers] = useState([])
-    const fetchUsers = async() => {
-        try {
-            const response = await fetch('https://jsonplaceholder.typicode.com/users')
-            const data = await response.json()
-            setUsers(data)
-        } catch (error) {
-            console.error(error)
-        }
-    }
 
-    //Se puede cargar automaticamente los datos cuando se genere un cambio
-    //useState(()=>{
-    //    fetchUsers()
-    //},[])
-    //O se puede cargar a través de una función con un botón
-    const loadUsers = () => {
-        fetchUsers()
-    }
+  const [endpoint, setEndpoint] = useState('users')
 
-    return (
+  const changeEndpoint = () => {
+    setEndpoint('comments');
+  };
+  
+  return (
     <>
       <h1>Lista de usuarios</h1>
-      <button onClick={loadUsers}>Carga usuarios</button>
-      <ul>
-        {users.map(u => <li key={u.id}>{u.name}</li>)}
-      </ul>
+      <button onClick={changeEndpoint}>Carga usuarios</button>
+      <UserList endpoint={endpoint}/>
     </>
-  )
-}
+  );
+};
 
-export default UsersApp
+export default UsersApp;
