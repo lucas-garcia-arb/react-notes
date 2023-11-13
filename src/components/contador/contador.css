@@ -1,0 +1,15 @@
+.contador__title{
+    text-align: center;
+}
+
+.buttons__container{
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    margin: 5px 20px;
+    min-width: 100px;
+    min-height: 40px;
+    font-size: 20px !important;
+}
