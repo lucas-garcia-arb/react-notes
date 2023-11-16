@@ -1,10 +1,10 @@
-import { Contador } from "../contador/Contador"
+import { FormComponent } from "../formulario/FormComponent" 
 
 export const HooksApp = () => {
   return (
     <>
         <h1>Aplicación de Hooks</h1>
-        <Contador />
+        <FormComponent />
     </>
   )
 }
