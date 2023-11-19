@@ -1,10 +1,10 @@
-import { FormComponent } from "../formulario/FormComponent"
+import { CalculosPesados } from "../calculos-pesados/CalculosPesados";
 
 export const HooksApp = () => {
   return (
     <>
-        <h1>Aplicación de Hooks</h1>
-        <FormComponent />
+      <h1>Aplicación de Hooks</h1>
+      <CalculosPesados />
     </>
-  )
-}
+  );
+};
