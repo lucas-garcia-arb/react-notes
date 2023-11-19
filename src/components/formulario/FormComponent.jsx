@@ -1,20 +1,28 @@
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "../../hooks/useForm";
+import { useEffect, useRef } from "react";
 
 export const FormComponent = () => {
+
+  const focusRef = useRef()
+  console.log(focusRef);
+
   const initialForm = {
     userName: "",
     email: "",
     password: "",
   };
 
-  const { formState, userName, email, password, onInputChange } =
-    useForm(initialForm);
+  const { formState, userName, email, password, onInputChange } = useForm(initialForm);
 
   const onSubmitForm = (event) => {
     event.preventDefault();
     console.log(formState);
   };
+
+  useEffect(()=>{
+    focusRef.current.focus()
+  },[])
 
   return (
     <Form onSubmit={onSubmitForm}>
@@ -31,6 +39,7 @@ export const FormComponent = () => {
       <Form.Group className="mb-3">
         <Form.Label>Email</Form.Label>
         <Form.Control
+          ref={focusRef}
           type="email"
           placeholder="Email"
           name="email"
