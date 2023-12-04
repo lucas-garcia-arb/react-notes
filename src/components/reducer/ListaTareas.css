@@ -1,0 +1,10 @@
+.formTareas {
+    margin: 20px auto;
+    width: 60%;
+}
+
+.formTareas__btn{
+    width: 200px;
+    display: block;
+    margin: 2px auto
+}

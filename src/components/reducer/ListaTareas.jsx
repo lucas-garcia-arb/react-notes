@@ -1,3 +1,7 @@
+import { Button, Form } from "react-bootstrap";
+import { useForm } from "../../hooks/useForm";
+import "./ListaTareas.css";
+
 const initialState = [
   {
     id: 1,
@@ -27,22 +31,85 @@ const editarTareas = {
 };
 
 const tareaReducer = (state = initialState, action = {}) => {
-    //Lo importante de este reducer es que la lógica de negocios se centraliza en una sola función.
-  switch (action) {
+  switch (action.type) {
     case "[TAREAS] Agregar tareas":
+      console.log("agregar");
       return [...state, action.payload];
     case "[TAREAS] Borrar tareas":
-      return [];
+      console.log("Borrar");
+    // return [...state, action.payload];
     case "[TAREAS] Editar tareas":
-      return [...state, action.payload];
+      console.log("Editar");
+    // return [...state, action.payload];
     default:
-      break;
+      return state;
   }
   return state;
 };
 
-console.log(tareaReducer(initialState, agregarTarea));
-
 export const ListaTareas = () => {
-  return <></>;
+  const { tarea, formState, onInputChange } = useForm({ tarea: "" });
+
+  const [tareasState, dispatch] = useReducer(tareaReducer, initialState);
+
+  const agregarTarea = (event) => {
+    event.preventDefault();
+    console.log(formState);
+
+    //   type: "[TAREAS] Agregar tareas",
+    //   payload: nuevaTarea,
+  };
+
+  return (
+    <>
+      <Form className="formTareas" onSubmit={agregarTarea}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Control
+            name="tarea"
+            type="text"
+            placeholder="Ingrese Tarea"
+            value={tarea}
+            onChange={onInputChange}
+          />
+        </Form.Group>
+        <Button
+          className="formTareas__btn"
+          variant="primary"
+          type="submit"
+          onClick={(e) => {}}
+        >
+          Submit
+        </Button>
+      </Form>
+      <ul>
+        {
+          tareasState.map(item => {
+            return (
+              <li key={item.id}>{item.tarea}</li>
+            )
+          })
+        }
+      </ul>
+    </>
+  );
 };
+
+// export const useForm = (initialForm = {}) => {
+
+//   const [ formState, setFormState ] = useState(initialForm)
+
+//   const onInputChange = ({ target }) => {
+//     const { name, value } = target
+
+//     setFormState({
+//       ...formState,
+//       [name]: value
+//     })
+//   }
+
+//   return{
+//     formState,
+//     ...formState,
+//     onInputChange
+//   }
+// }
